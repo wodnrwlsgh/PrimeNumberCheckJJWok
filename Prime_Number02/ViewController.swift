@@ -1,25 +1,52 @@
-//
-//  ViewController.swift
-//  Prime_Number02
-//
-//  Created by D7702_09 on 2018. 3. 28..
-//  Copyright © 2018년 lse. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var Lable: UILabel!
+    @IBOutlet weak var text: UITextField!
 
+    
+    var isPrime = true
+    
+    @IBAction func Check(_ sender: Any) {
+        let Number = Int(text.text!)
+        var isPrime = true
+        if Number! == 1 {
+            isPrime = false
+        }
+        
+    if Number != 1 && Number != 2 {
+        for i in 2 ..< Number! {
+            if Number! % i == 0 {
+                isPrime = false
+      
+                }
+            }
+        }
+        
+        if isPrime == true {
+            Lable.text = "Prime Number"
+        } else {
+            Lable.text = "Not Prime Number"
+        }
+        
+        }
+    
+    @IBAction func Reset(_ sender: Any) {
+        text.text = ""
+        text.text = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        text.delegate = self
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        text.resignFirstResponder()
+        return true
     }
-
 
 }
+
 
